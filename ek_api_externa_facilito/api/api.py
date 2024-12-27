@@ -90,6 +90,12 @@ class OdooApi:
         
         id_sub_company = self.get_search_sub_company(models)
 
+        if not id_sub_company:
+             return {
+                "codigoRespuesta": "C002",
+                "descripcionRespuesta": MessageCataloglist.MessageCatalog['C002']
+            }
+
 
         sales = models.execute_kw(
             self.db,
