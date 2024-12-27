@@ -1,0 +1,10 @@
+{
+    "USERS": {
+        "admin": "12345",
+        "user1": "password1",
+        "user2": "password2"
+    },
+    "JWT_SECRET": "mi_clave_secreta",
+    "JWT_ALGORITHM": "HS256",
+    "JWT_EXPIRATION": 3600
+}
