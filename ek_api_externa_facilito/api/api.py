@@ -139,6 +139,11 @@ class OdooApi:
                 for company in id_sub_company:
                     if company.get("company_id", False)[0] == id_company:
                         id_sub_empresa = company.get("id_subcompany", False)
+                if not id_sub_empresa:
+                    return {
+                        "codigoRespuesta": "C002",
+                        "descripcionRespuesta": MessageCataloglist.MessageCatalog['C002']
+                    }
 
             deudas.append({
                 "secuencial": secuencial,
