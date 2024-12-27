@@ -219,7 +219,7 @@ class OdooApi:
         id_sub_company = self.get_search_sub_company(models)
         company_id = False
         for company in id_sub_company:
-            if company.get("id_subcompany", False) == id_sub_empresa:
+            if company.get("id_subcompany", False) == id_sub_empresa and company.get("codigopago", False) == id_recaudadora:
                 company_id = company
         if not company_id:
             return {
@@ -428,12 +428,12 @@ class OdooApi:
                 "descripcionRespuesta": MessageCataloglist.MessageCatalog['PS001']
             }
 
-        datas = self.group_get_data_payment_search(models,payment_ids)
+        datas = self.group_get_data_payment_search(models,payment_ids,id_sub_empresa)
 
         return datas
 
 
-    def group_get_data_payment_search(self,models,data = []):
+    def group_get_data_payment_search(self,models,data = [],id_sub_empresa = False):
         grouped_data = {}
         for entry in data:
             ref_card = entry.get('ref_card')
@@ -448,7 +448,7 @@ class OdooApi:
                 grouped_data[ref_card] = {
                     "idDeuda": entry.get('ref_ext'),
                     "idPagoIr": ref_card,
-                    "idSubempresa": entry.get('company_id')[0],
+                    "idSubempresa": id_sub_empresa,
                     "nombreCliente": res_partner[1],
                     "nameSubempresa": entry.get('company_id')[1],
                     "cedulaCliente": vat[0].get('vat'),
