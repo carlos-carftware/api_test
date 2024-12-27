@@ -104,7 +104,11 @@ class OdooApi:
             {'fields': ['id', 'name', 'partner_id', 'promotion_templ_id', 'ek_subscription_id', 'amount_residual','company_id',
                         'date_order','amount_tax','validity_date','city_id'],
              'order': "date_order asc"})
-
+        if not sales:
+            return {
+                "codigoRespuesta": "P002 ",
+                "descripcionRespuesta": MessageCataloglist.MessageCatalog['P002']
+            }
         partner = False
         deudas = []
         cliente = {}
