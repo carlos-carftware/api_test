@@ -351,6 +351,7 @@ class OdooApi:
             "payment_method_line_id":  payment[0].get('payment_method_line_id', [None, ""])[0],
             "company_id":  payment[0].get('company_id', [None, ""])[0],
             "journal_id":  payment[0].get('journal_id', [None, ""])[0],
+            "is_collector": True,
 
             #login
 
