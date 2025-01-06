@@ -249,6 +249,8 @@ class OdooApi:
             "payment_method_line_id": company_id.get('payment_method_line_id', [None, ""])[0],
             "company_id": company_id.get('company_id', [None, ""])[0],
             "journal_id": company_id.get('journal_id', [None, ""])[0],
+            "is_collector": True,
+
 
             #login
 
@@ -319,6 +321,7 @@ class OdooApi:
                 ['ref_ext', '=', id_deuda],
                 ['date', '=', fecha_transaccion],
                 ['company_id.id', '=', company_id.get('company_id', [None, ""])[0]],
+                ['is_reconcile_ext', '=', False],
 
 
             ]],
