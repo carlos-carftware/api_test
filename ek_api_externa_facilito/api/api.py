@@ -240,9 +240,11 @@ class OdooApi:
             "type_Payment": "payment",
             "ref": idPagoIr,
             "ref_ext": id_deuda,
-            "ref_card": idPagoIr,
+            #
+            "ref_card": id_recaudadora,
+            #
             "date": fechaTransaccion,
-            "collector_ext": id_recaudadora,
+            "collector_ext":  'switch',
             "sale_id": partner_id_for_sale[0].get('id', 0),
             "partner_id": partner_id_for_sale[0].get('partner_id', [None, ""])[0],
             "amount": valorDeuda,
@@ -315,8 +317,8 @@ class OdooApi:
         payment = models.execute_kw(self.db,
                                 self.uid,
                                 self.key, 'account.payment', 'search_read', [[
-                ['ref_card', '=', idPagoIr],
-                ['collector_ext', '=', id_recaudadora],
+                ['ref', '=', idPagoIr],
+                ['ref_card', '=', id_recaudadora],
                 ['state', '=', 'posted'],
                 ['ref_ext', '=', id_deuda],
                 ['date', '=', fecha_transaccion],
